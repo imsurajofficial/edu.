@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SignUp</title>
+    <link rel="stylesheet" href="../style/signupStyle.css">
+</head>
+<body>
+    <div class="wrapper" >
+        <h1>Sign Up</h1>
+        <form action="signup">
+            <input type="text" id="signupUsername" placeholder="User Name">
+            <input type="text" id="name" placeholder="Name">
+            <input type="password" placeholder="Password">
+            <input type="password" id="cnfpass" placeholder="Confirm password">
+        </form>
+        <div class="terms">
+            <input type="checkbox" id="checkbox">
+            <label for="checkbox">I agree to these <a href="#">Terms & Condition</a></label>
+        </div>
+        <button type="submit">Sign Up</button>
+        <div class="member">
+            Already a member? <a href="signin.html">LogIn Here</a>
+        </div>
+    </div>
+    <script>
+        console.log('helowww');
+        document.getElementById('signup').addEventListener('submit', function(event) {
+        event.preventDefault();
+        console.log('helllo');
+        var username = document.getElementById('signupUsername').value;
+        var name = document.getElementById('name').value;
+        var password = document.getElementById('cnfpass').value;
+
+        if (localStorage.getItem(username)) {
+            alert('Username already exists! Please choose a different one.');
+        } else {
+            var user = { username: username, name:name, password: password };
+            localStorage.setItem(username,name, JSON.stringify(user));
+            
+            alert('Signup successful! Please login.');
+            window.location.href = 'signin.html'; // Redirect to login page
+        }
+        console.log(user);
+
+        document.getElementById('signupUsername').value = '';
+        document.getElementById('name').value = '';
+        document.getElementById('cnfpass').value = '';
+        });
+    </script>
+
+</body>
+</html>
